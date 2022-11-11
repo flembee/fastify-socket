@@ -16,6 +16,11 @@ const ChannelsController = fastify => {
       res.send(result);
     },
 
+    getByUser: async (req, res) => {
+      const result = await channelsService.getByUser(req.params.id);
+      res.send(result);
+    },
+
     add: async (req, res) => {
       const result = await channelsService.add(req.body);
       res.send(result);
