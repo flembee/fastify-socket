@@ -1,10 +1,10 @@
 <h4 align="center">Fastify Server with MongoDB Connection.</h4>
 
 <p align="center">
-    <a href="https://github.com/flembee/fastify-server/tree/main">
+    <a href="https://github.com/flembee/fastify-socket/tree/main">
     <img src="https://img.shields.io/badge/Last%20Commit-November-green?style=flat-square&logo=github&logoColor=white"
          alt="GitHub last commit">
-    <a href="https://github.com/flembee/fastify-server/tree/develop">
+    <a href="https://github.com/flembee/fastify-socket/tree/develop">
     <img src="https://img.shields.io/badge/Open%20pull%20requests-0-blue?style=flat-square&logo=github&logoColor=whit"
          alt="GitHub develop branch">
 </p>
@@ -38,7 +38,7 @@ The user logins via Auth, the application is also protected by a rate limiter an
 ## Installation
 
 ##### Downloading and installing steps:
-* **[Download or Clone](https://github.com/flembee/fastify-server.git)** the latest version of the Code.
+* **[Download or Clone](https://github.com/flembee/fastify-socket.git)** the latest version of the Code.
 
 1. Create an `.env` file from the template:
 
@@ -62,7 +62,7 @@ GCP_STORAGE_BUCKET=
 2. Install dependencies:
 
 ```console
-$ cd fastify-server/mongodb
+$ cd fastify-socket/mongodb
 $ npm install
 $ npm run dev
 ```
@@ -80,7 +80,7 @@ $ npm run dev
 
 ## Author
 
-| [![Flembee](../flembee.jpeg)](https://www.flembee.com) 	|
+| [![Flembee](./flembee.jpeg)](https://www.flembee.com) 	|
 |:---------------------------------------------------------------------------------------------------------:	|
 |                                            **Flembee**                                            	|
 
