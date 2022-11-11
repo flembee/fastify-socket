@@ -1,4 +1,4 @@
-<h4 align="center">Fastify Server with MongoDB Connection.</h4>
+<h4 align="center">Fastify Socket with MongoDB and Websocket Connection.</h4>
 
 <p align="center">
     <a href="https://github.com/flembee/fastify-socket/tree/main">
@@ -45,24 +45,20 @@ The user logins via Auth, the application is also protected by a rate limiter an
 #### MongoDB
 
 ```console
-PORT=3000
+PORT=3220
 MONGO_URL=
-SERVER_PORT=3050
+SERVER_PORT=3220
 SECRET_KEY=
 EXPIRES_IN=6h
 RESET_EXPIRES_IN=300000
 RESET_SECRET_KEY=
 salt=13
-GCP_PROJECT_ID=
-GCP_SERVICE_ACCOUNT=
-GCP_PRIVATE_KEY=
-GCP_STORAGE_BUCKET=
 ```
 
 2. Install dependencies:
 
 ```console
-$ cd fastify-socket/mongodb
+$ cd fastify-socket/
 $ npm install
 $ npm run dev
 ```
@@ -74,6 +70,7 @@ $ npm run dev
 | Login with authorization|
 | REST API|
 | MongoDB support |
+| Websocket plugin |
 | HTTP Requests|
 | GCP Storage|
 | Read PDF service|
@@ -98,6 +95,6 @@ Feel free to send pull request with new features, bugfix or documentation improv
 
 ## License
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://github.com/flembee/basic-form/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://github.com/flembee/fastify-socket/blob/main/LICENSE)
 
 - Copyright © [Flembee](https://www.flembee.com).
