@@ -44,7 +44,7 @@ class ChannelsService {
     }
 
     async getByUser(id) {
-        const obtained = await this.Model.findOne({ users : id})
+        const obtained = await this.Model.find({ users : id})
         .populate(['users']);
 
         return obtained;
