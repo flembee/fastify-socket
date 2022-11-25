@@ -3,12 +3,11 @@ import schemas from './schemas/index.js';
 
 const { MessagesController } = controllers;
 const { MessagesSchema } = schemas;
-const { get, search, add, remove } = MessagesSchema;
+const { get, add, remove } = MessagesSchema;
 
 const MessagesRoutes = async function (fastify) {
   fastify
-    .get('/:id', { schema: get,/*preValidation: [fastify.validate]*/ }, MessagesController(fastify).get)
-    .get('/', { schema: search, /*preValidation: [fastify.validate]*/ }, MessagesController(fastify).search)
+    .get('/channel/:id', { schema: get,/*preValidation: [fastify.validate]*/ }, MessagesController(fastify).getByChannel)
     .post('/', { schema: add, /*preValidation: [fastify.validate] */}, MessagesController(fastify).add)
     .delete('/', { schema: remove, /*preValidation: [fastify.validate]*/ }, MessagesController(fastify).delete);
 };

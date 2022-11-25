@@ -10,12 +10,6 @@ const ChannelsController = fastify => {
       res.send(result);
     },
 
-    search: async (req, res) => {
-      const query = customQuery(req.query);
-      const result = await channelsService.search(query);
-      res.send(result);
-    },
-
     getByUser: async (req, res) => {
       const result = await channelsService.getByUser(req.params.id);
       res.send(result);

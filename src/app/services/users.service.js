@@ -10,43 +10,15 @@ class UsersService {
         this.Model = db.model('users', models.UsersModel);
     }
 
-    async search({
-        select,
-        populate,
-        page,
-        limit,
-        sortField,
-        sortDirection,
-        querySearch,
-        queryParams,
-        logger,
-    }) {
-        const options = {
-            select: select || '-password',
-            populate: populate || ['userRole'],
-            page: page || search.pageOptions.page,
-            limit: limit || search.pageOptions.limit,
-            sort: sortField
-                ? { [sortField]: sortDirection || search.pageOptions.sort.key }
-                : search.pageOptions.sort,
-        };
-
-        return this.Model.paginate(
-            { ...querySearch, ...queryParams, _id: { $ne: logger } },
-            options
-        );
-
-    }
-
     async get(id) {
-        const obtained = await this.Model.findOne({ _id: id })
-            .populate(['userRole']);
+        const obtained = await this.Model.findOne({ _id: id });
+
         return obtained;
     }
 
     async getByEmail(email) {
-        const obtained = await this.Model.findOne({ email })
-            .populate(['userRole']);
+        const obtained = await this.Model.findOne({ email });
+
         return obtained;
     }
     
@@ -72,7 +44,6 @@ class UsersService {
             { $set: objectToDotNotation({ updatedAt: Date.now(), ...data }) },
             { new: true }
         )
-            .populate(['userRole'])
             .catch((e) => {
                 throw e;
             });

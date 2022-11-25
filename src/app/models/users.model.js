@@ -19,22 +19,9 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    userRole: {
-        type: ObjectId,
-        required: true,
-        ref: 'roles',
-    },
-    phoneNumber: {
-        type: Number,
-        default: 0
-    },
     userImage: {
         type: String,
         default: 'user.png'
-    },
-    verified: {
-        type: String,
-        default: false
     },
 }, { 
     versionKey: false,

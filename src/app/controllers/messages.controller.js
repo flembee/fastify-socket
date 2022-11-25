@@ -5,17 +5,6 @@ const { customQuery } = utils;
 const MessagesController = fastify => {
   const { messagesService } = fastify;
   return {
-    get: async (req, res) => {
-      const result = await messagesService.get(req.params.id);
-      res.send(result);
-    },
-
-    search: async (req, res) => {
-      const query = customQuery(req.query);
-      const result = await messagesService.search(query);
-      res.send(result);
-    },
-
     getByChannel: async (req, res) => {
       const result = await messagesService.getByChannel(req.params.id);
       res.send(result);

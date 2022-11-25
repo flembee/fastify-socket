@@ -29,13 +29,11 @@ const Authentication = fp(async function Authentication(fastify) {
     },
 
     generateToken: user => {
-      const { _id, name, email, phoneNumber, userRole } = user;
+      const { _id, name, email } = user;
       const payload = {
         id: _id,
         name: name,
         email: email,
-        phoneNumber: phoneNumber,
-        role: userRole.name,
       };
 
       const token = jwt.sign(payload, auth.secretKey, {

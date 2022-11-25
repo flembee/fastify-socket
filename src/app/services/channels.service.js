@@ -1,41 +1,9 @@
-import { deepParseJson } from 'deep-parse-json';
-
 import models from '../models/index.js';
-import config from '../../../config/index.js';
-
-const { search } = config;
 
 class ChannelsService {
     constructor(db) {
         this.Model = db.model('channels', models.ChannelsModel);
     }
-
-    async search({
-        select,
-        populate,
-        page,
-        limit,
-        sortField,
-        sortDirection,
-        querySearch,
-        queryParams,
-    }) {
-        const options = {
-            select: select || '',
-            populate: populate || ['users'],
-            page: page || search.pageOptions.page,
-            limit: limit || search.pageOptions.limit,
-            sort: sortField
-                ? { [sortField]: sortDirection || search.pageOptions.sort.key }
-                : search.pageOptions.sort,
-        };
-        const queryObject = querySearch
-            ? deepParseJson(querySearch)
-            : deepParseJson(queryParams);
-
-        return this.Model.paginate({ ...queryObject }, options);
-    }
-
     async get(id) {
         const obtained = await this.Model.findOne({ _id: id })
         .populate(['users']);
@@ -44,9 +12,14 @@ class ChannelsService {
     }
 
     async getByUser(id) {
-        const obtained = await this.Model.find({ users : id})
+        let obtained = await this.Model.findOne({ users : id})
         .populate(['users']);
 
+        if(obtained.users.length > 0){
+            const users = obtained.users.filter(({_id}) => _id.toString() !== id);
+            obtained.users = users;
+        }
+        
         return obtained;
     }
 
