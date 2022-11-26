@@ -12,12 +12,16 @@ class ChannelsService {
     }
 
     async getByUser(id) {
-        let obtained = await this.Model.findOne({ users : id})
+        let obtained = await this.Model.find({ users : id})
         .populate(['users']);
 
-        if(obtained.users.length > 0){
-            const users = obtained.users.filter(({_id}) => _id.toString() !== id);
-            obtained.users = users;
+        if(obtained.length > 0){
+            obtained.map((channel) => {
+                if(channel.users.length > 0){
+                    const users = channel.users.filter(({_id}) => _id.toString() !== id);
+                    channel.users = users;
+                }
+            })
         }
         
         return obtained;
