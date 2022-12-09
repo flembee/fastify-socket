@@ -10,10 +10,19 @@ const UsersController = (fastify) => {
             const result = await usersService.get(req.params.id);
             res.send(result);
         },
+        getContacts: async (req, res) => {
+            const result = await usersService.getContacts(req.params.id);
+            res.send(result);
+          },      
         add: async (req, res) => {
             const hashed = await hashPassword(req.body.password);
 
             const result = await usersService.add({ ...req.body, password: hashed });
+
+            res.send(result);
+        },
+        addContact: async (req, res) => {
+            const result = await usersService.addContact({ ...req.body});
 
             res.send(result);
         },

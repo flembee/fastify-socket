@@ -23,6 +23,11 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: 'user.png'
     },
+    contacts: [{
+        type: ObjectId,
+        ref: 'users',
+        default: [],
+    }],
 }, { 
     versionKey: false,
         minimize: false,

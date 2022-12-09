@@ -1,8 +1,6 @@
 import models from '../models/index.js';
-import config from '../../../config/index.js';
 import utils from '../utils/index.js';
 
-const { search } = config;
 const { objectToDotNotation } = utils;
 
 class UsersService {
@@ -14,6 +12,22 @@ class UsersService {
         const obtained = await this.Model.findOne({ _id: id });
 
         return obtained;
+    }
+
+    async getContacts(id) {
+        const obtained = await this.Model.findOne({ _id: id }).populate(['contacts']);
+        
+        let contacts = [];
+
+        if(obtained.contacts.length > 0){
+            const selectFewerProps = (show) => {
+                const {id, name, email, userImage} = show;
+                return {id, name, email, userImage};
+            }
+            contacts = obtained.contacts.map(selectFewerProps);
+        }
+
+        return contacts;
     }
 
     async getByEmail(email) {
