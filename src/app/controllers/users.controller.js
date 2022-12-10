@@ -22,9 +22,17 @@ const UsersController = (fastify) => {
             res.send(result);
         },
         addContact: async (req, res) => {
-            const result = await usersService.addContact({ ...req.body});
+            const { id, email } = req.body;
 
-            res.send(result);
+            const contact = await usersService.getByEmail(email);
+            
+            if(!contact)
+                res.send(false);
+            
+            else{
+                const result = await usersService.addContact({id, contactId: contact.id});
+                res.send(result);
+            }
         },
         update: async (req, res) => {
             delete req.body.id;

@@ -30,6 +30,21 @@ class UsersService {
         return contacts;
     }
 
+    async addContact(data) {
+        const { id, contactId } = data;
+
+        let user = await this.Model.findOne({ _id: id });
+
+        if(!user.contacts.includes(contactId)){
+            user.contacts.push(contactId);
+            user = await this.update(id, {contacts: user.contacts});
+        }else{
+            user = true;
+        }
+
+        return user;
+    }
+
     async getByEmail(email) {
         const obtained = await this.Model.findOne({ email });
 
